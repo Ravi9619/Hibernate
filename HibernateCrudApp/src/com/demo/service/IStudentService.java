@@ -5,12 +5,12 @@ import com.demo.dto.Student;
 public interface IStudentService {
 	
 	// operations to be implemented
-	public String addStudent(String sname, Integer sage, String saddress);
+	public String save(String sname, Integer sage, String saddress);
 
-	public Student searchStudent(Integer sid);
+	public Student findById(Integer sid);
 
-	public String updateStudent(Student student);
+	public String updateById(Student student);
 
-	public String deleteStudent(Integer sid);
+	public String deleteById(Integer sid);
 
 }

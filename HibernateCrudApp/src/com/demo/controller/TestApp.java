@@ -54,7 +54,7 @@ public class TestApp {
 		String sid = br.readLine();
 
 		IStudentService studentService = StudentServiceFactory.getStudentService();
-		Student student = studentService.searchStudent(Integer.parseInt(sid));
+		Student student = studentService.findById(Integer.parseInt(sid));
 
 		if (student != null) {
 			Student newStudent = new Student();
@@ -87,7 +87,7 @@ public class TestApp {
 			System.out.println("new Object data is :: " + newStudent);
 			System.out.println();
 
-			String status = studentService.updateStudent(newStudent);
+			String status = studentService.updateById(newStudent);
 			if (status.equalsIgnoreCase("success")) {
 				System.out.println("record updated succesfully");
 			} else {
@@ -106,7 +106,7 @@ public class TestApp {
 		int sid = scanner.nextInt();
 
 		IStudentService studentService = StudentServiceFactory.getStudentService();
-		String msg = studentService.deleteStudent(sid);
+		String msg = studentService.deleteById(sid);
 		if (msg.equalsIgnoreCase("success")) {
 			System.out.println("record deleted succesfully");
 		} else if (msg.equalsIgnoreCase("not found")) {
@@ -124,7 +124,7 @@ public class TestApp {
 		int sid = scanner.nextInt();
 
 		IStudentService studentService = StudentServiceFactory.getStudentService();
-		Student std = studentService.searchStudent(sid);
+		Student std = studentService.findById(sid);
 		if (std != null) {
 			System.out.println(std);
 			System.out.println("SID\tSNAME\tSAGE\tSADDR");
@@ -149,7 +149,7 @@ public class TestApp {
 		System.out.print("Enter the student addres :: ");
 		String saddress = scanner.next();
 
-		String msg = studentService.addStudent(sname, sage, saddress);
+		String msg = studentService.save(sname, sage, saddress);
 		if (msg.equalsIgnoreCase("success")) {
 			System.out.println("record inserted succesfully");
 		} else {

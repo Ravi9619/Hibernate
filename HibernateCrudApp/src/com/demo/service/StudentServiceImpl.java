@@ -10,27 +10,27 @@ public class StudentServiceImpl implements IStudentService {
 	private IStudentDao stdDao;
 
 	@Override
-	public String addStudent(String sname, Integer sage, String saddress) {
+	public String save(String sname, Integer sage, String saddress) {
 		stdDao = StudentDaoFactory.getStudentDao();
-		return stdDao.addStudent(sname, sage, saddress);
+		return stdDao.save(sname, sage, saddress);
 	}
 
 	@Override
-	public Student searchStudent(Integer sid) {
+	public Student findById(Integer sid) {
 		stdDao = StudentDaoFactory.getStudentDao();
-		return stdDao.searchStudent(sid);
+		return stdDao.findById(sid);
 	}
 
 	@Override
-	public String updateStudent(Student student) {
+	public String updateById(Student student) {
 		stdDao = StudentDaoFactory.getStudentDao();
-		return stdDao.updateStudent(student);
+		return stdDao.updateById(student);
 	}
 
 	@Override
-	public String deleteStudent(Integer sid) {
+	public String deleteById(Integer sid) {
 		stdDao = StudentDaoFactory.getStudentDao();
-		return stdDao.deleteStudent(sid);
+		return stdDao.deleteById(sid);
 	}
 
 }

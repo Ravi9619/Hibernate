@@ -18,7 +18,7 @@ public class StudentDaoImpl implements IStudentDao {
 	Session session = HibernateUtil.getSession();
 
 	@Override
-	public String addStudent(String sname, Integer sage, String saddress) {
+	public String save(String sname, Integer sage, String saddress) {
 
 		Transaction transaction = session.beginTransaction();
 		boolean flag = false;
@@ -51,7 +51,7 @@ public class StudentDaoImpl implements IStudentDao {
 	}
 
 	@Override
-	public Student searchStudent(Integer sid) {
+	public Student findById(Integer sid) {
 
 		Student student = session.get(Student.class, sid);
 		if (student != null) {
@@ -63,7 +63,7 @@ public class StudentDaoImpl implements IStudentDao {
 	}
 
 	@Override
-	public String deleteStudent(Integer sid) {
+	public String deleteById(Integer sid) {
 		
 		Transaction transaction = session.beginTransaction();
 		boolean flag = false;
@@ -98,10 +98,29 @@ public class StudentDaoImpl implements IStudentDao {
 	}
 
 	@Override
-	public String updateStudent(Student student) {
+	public String updateById(Student student) {
 		
+		Transaction transaction = session.beginTransaction();
+		boolean flag = false;
+		String status = "";
 		
-		return "failure";
+		try {
+			if (transaction != null) {
+				session.merge(student);
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+				transaction.commit();
+				status = "success";
+			} else {
+				transaction.rollback();
+				status = "failure";
+			}
+		}
+		return status;
 	}
 
 }
