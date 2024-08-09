@@ -1,0 +1,4 @@
+name: ravi
+dob:  24/01/1998
+education: BE(EXTC)
+SkillSet: Java, JEE, Spring, Microservice, React
